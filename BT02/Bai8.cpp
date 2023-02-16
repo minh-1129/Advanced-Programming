@@ -1,3 +1,7 @@
+//You are given a string, S , consisting of lowercase English letters.
+//A string is beautiful with respect to S if it can be derived from  by removing exactly  characters.
+//Find and print the number of different strings that are beautiful with respect to S.
+
 #include <iostream>
 #include <cstring>
 using namespace std;
