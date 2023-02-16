@@ -6,13 +6,20 @@ void Play(int &guess);
 void Hint(int guess, int num);
 
 int main(){
-    int guess;
-    int ans = generateRandom();
-    do{
-        Play(guess);
-        Hint(guess, ans);
+    bool play = true;
+    while(play){
+        int guess;
+        int ans = generateRandom();
+        do{
+            Play(guess);
+            Hint(guess, ans);
+        }
+        while(guess != ans);
+        cout<<"Do you want to continue ?"<<endl;
+        cout<<"Enter 1 if YES or 0 if NO"<<endl;
+        bool tmp; cin>>tmp;
+        play = tmp;
     }
-    while(guess != ans);
     return 0;
 }
 
