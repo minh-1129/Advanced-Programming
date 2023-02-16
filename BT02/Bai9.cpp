@@ -1,5 +1,6 @@
 //Rectangular Game. Cho một lưới vuông hai chiều vô tận với ô ở góc trái dưới có tọa độ (1,1). Tất cả các ô ban đầu đều có giá trị bằng 0. Hãy chơi một trò chơi.
-//Trò chơi gồm N bước. Mỗi bước, bạn được cho một cặp số nguyên a và b. Giá trị của mỗi ô tọa độ (u,v) thỏa mãn 1 ≤ u ≤ a và 1 ≤ v ≤ b đều được tăng thêm 1 đơn vị. Sau N bước như vậy, nếu X là giá trị lớn nhất trong tất cả các ô. Bạn hãy cho biết có bao nhiêu số X trong lưới?
+//Trò chơi gồm N bước. Mỗi bước, bạn được cho một cặp số nguyên a và b. Giá trị của mỗi ô tọa độ (u,v) thỏa mãn 1 ≤ u ≤ a và 1 ≤ v ≤ b đều được tăng thêm 1 đơn vị. 
+//Sau N bước như vậy, nếu X là giá trị lớn nhất trong tất cả các ô. Bạn hãy cho biết có bao nhiêu số X trong lưới?
 
 #include <iostream>
 #include <climits>
