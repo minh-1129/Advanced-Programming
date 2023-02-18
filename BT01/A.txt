@@ -1,0 +1,87 @@
+1. Lệnh sau đây làm gì khi grade là một biến kiểu int? Nếu có lỗi cú pháp, hãy sửa lỗi.
+bool isA = (90 <= grade <= 100);
+//  gắn giá trị isA bằng giá trị chân lý của biểu thức (1 nếu đúng hoặc 0 nếu sai)
+// sửa lỗi: bool isA = (90 <= grade && grade <=100)
+
+
+2. Đoạn chương trình sau đây in ra kết quả gì?
+double x = (double) (3/5);
+	cout << x;
+//0.6
+
+3. Tại sao đoạn code dưới đây không in ra 4294967296 = 2^32?
+int x = 65536;
+	long y = x * x;
+	cout << y;
+  // vì dữ liệu kiểu int có giới hạn là 2^31 - 1, mà tích của 2 int tính là kiểu dữ liệu int, nên x*x vượt giới hạn int trước khi quy đổi sang long
+
+4. Biểu thức sau có giá trị gì?
+(sqrt(2) * sqrt(2) == 2)
+// false do sai lệch của biểu diễn số thập phân trong c++
+
+
+5.Viết một chương trình divideByZero để xem chuyện gì xảy ra khi bạn đem chia một giá trị kiểu int hoặc double cho 0 hoặc lấy đồng dư cho 0.
+// lỗi
+
+6. Thử xem trình biên dịch nói gì với một chương trình có hàm main chứa đoạn code sau
+int a = 27 * "three";
+hoặc
+double x;
+	cout << x; //in một số bất kì
+Nếu chuyển dòng khai báo x ra ngoài hàm main thì chuyện gì xảy ra? // in ra số 0 do biến khai báo ngoài hàm main mặc định = 0;
+
+7. Đoạn code sau cho output gì?
+int threeInt = 3;
+	int fourInt  = 4;
+	double threeDouble = 3.0;
+	double fourDouble  = 4.0;
+	cout << threeInt / fourInt << endl; //0
+	cout << threeInt / fourDouble << endl; //0.75
+	cout << threeDouble / fourInt << endl; //0.75
+	cout << threeDouble / fourDouble << endl; //0.75
+
+
+8. Chuyện gì xảy ra nếu ta khai báo hai biến trùng tên trong cùng một khối lệnh (block)? Lấy ví dụ là chương trình có hàm main() với nội dung sau:
+int  arg1;
+	arg1 = -1;
+	int x, y, z;
+	char myDouble = ’5 ’;
+	char arg1 = ’A ’;
+	cout << arg1 << "\n";
+	return 0;
+
+//không thể khai báo biến char arg1
+
+9. Cùng câu hỏi trên với đoạn code sau:
+int arg1;
+	arg1 = -1;
+	{
+	  char arg1 = ’A’; 
+	  cout << arg1 << "\n"; 
+	} 
+	return 0; 
+
+Khi ở bên trong khối lệnh con, định danh arg1 chỉ tới biến arg1 nào? // biến char arg1;
+
+10. Cùng câu hỏi trên với đoạn code sau:
+int arg1;
+	arg1 = -1;
+	{
+	  char arg1 = ’A’; 
+	} 
+	cout << arg1 << "\n"; 
+	return 0; 
+
+
+Khi ra khỏi khối lệnh con, định danh arg1 chỉ tới biến arg1 nào? //biến int arg1
+
+11. Chuyển đổi nhiệt độ. Dòng lệnh sau có nhiệm vụ đổi từ độ F (Fahrenheit) sang độ C (Celsius). Lệnh đó có gì sai?
+double C = (F - 32) * (5 / 9);
+//chưa khai báo biến F, cần để dạng double
+// để (5/9) sẽ ra kiểu int = 0; cần để là 5.0/9;
+12. Đoạn code sau in ra kết quả gì?
+if (10 > 5); 
+	 else; {           
+	    cout << "Here";
+	 };
+ //in Here ra màn hình
