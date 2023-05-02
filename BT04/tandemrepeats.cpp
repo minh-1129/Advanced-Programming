@@ -1,33 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
-const unsigned long long p1 = 1209328303;
-const long long p2 = 31;
-const int mod = 1e9 + 9;
+
+const long long p = 97;
+const int mod = 1000000007;
 const int maxn = 100000;
-string str;
-//string hashing
-unsigned long long hash1[maxn + 1], p_pow1[maxn + 1];
-long long hash2[maxn + 1], p_pow2[maxn + 1];
-//hash s[i..j] = hash s[0..j] - hash s[0....i-1]
-pair<unsigned long long, long long> computed_hash(int i, int j){
-    unsigned long long tmp1 = hash1[j + 1] - hash1[i] * p_pow1[j - i + 1];
-    long long tmp2 =(hash2[j + 1] - hash2[i] * p_pow2[j - i + 1] % mod + mod) % mod;
-    return make_pair(tmp1, tmp2);
+
+
+
+long long hash1[maxn + 1], p_pow[maxn + 1];
+//hash s[0...n-1] = s[0].p ^ (n - 1) + s[1].p ^ (n - 2) + ... + s[n-1]
+
+//hash s[i...j] = sigma s[k].p ^(j - i - (k - i)) = sigma s[k].p^(j - k) <k: i -> j> 
+//= s[i].p ^(j - i) + s[i + 1].p^(j-i-1) +... + s[j]
+
+//hash s[i...j] = hash s[0...j] - hash s[0... i -1] * p ^ (j - i + 1)
+//hash s[0...j] = s[0].p^j + s[1].p^(j-1) + ... + s[i-1].p^(j - i + 1) * + s[j]
+//hash s[0...i -1] = s[0].p^(i-1) + s[1].p^(i-2) +...+ s[i-1]
+//hash s[0...i-1] * p^(j - i + 1) = s[0].p^j + s[1].p^(j-1) +...+ s[i - 1].p^(j - i + 1)
+
+//hash1[i + 1] = hash s[0..i]
+long long computed_hash(int i, int j) //hash s[i...j]
+{
+    long long tmp =(hash1[j + 1] - hash1[i] * p_pow[j - i + 1] % mod + mod) % mod;
+    return tmp;
 }
 int main(){
     int n, m;
     cin>>n>>m;
+    string str;
     cin>>str;
 
-    p_pow1[0] = p_pow2[0] = 1;
-    hash1[0] = hash2[0] = 0;
+    p_pow[0] = 1;
+    hash1[0] = 0;
     for(int i = 0; i < n; i++){
-        p_pow1[i + 1] = p_pow1[i] * p1;
-        p_pow2[i + 1] = p_pow2[i] * p2;
-        hash1[i + 1] = hash1[i] * p1 + str[i];
-        hash2[i + 1] = (hash2[i] * p2 + (str[i] - 'a' + 1)) % mod;
+        
+        p_pow[i + 1] = p_pow[i] * p % mod;
+        
+        hash1[i + 1] = (hash1[i] * p + (str[i] - 'a' + 1)) % mod;
     }
-    int SQRTN = sqrt(n); //for length > sqrt(n) use bruteforce
+    int SQRTN = (int)sqrt(n); //for length > sqrt(n) use bruteforce
     vector<vector<int>> memo(n, vector<int>(SQRTN + 1, 0));
     for(int i = n - 1; i >= 0; i--)
     {
@@ -59,7 +70,7 @@ int main(){
         } else{
             int ans = 1;
             int ptr = j + 1;
-            pair<unsigned long long, long long> sub = computed_hash(i, j);
+            long long sub = computed_hash(i, j);
             while(ptr + length <= n && computed_hash(ptr, ptr + length - 1) == sub){
                 ++ans;
                 ptr += length;
