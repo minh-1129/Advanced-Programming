@@ -18,7 +18,7 @@ void loang(int grid[2000][2000], int W, int H, int x, int y)
     for(int i = 0; i < 3; i++){
         int x1 = x + 1;
         int y1 = y + dy[i];
-        if(x1 >= 0 && y1 >= 0 && x1 < H && y1 < W && grid[x1][y1] == 1 && (grid[x1][y1]== 1 &&(x1==H-1||y1 == y||grid[x][y1] ==1))
+        if(x1 >= 0 && y1 >= 0 && x1 < H && y1 < W && grid[x1][y1] == 1 && (grid[x][y1] == 1 || grid[x][y1] == 2))
         {
             
             loang(grid, W, H, x1,y1);
@@ -47,19 +47,13 @@ int main() {
         }
     }
     loang(grid, W, H, x_pos, y_pos);
-  
-  
-        
-   for(int i = 0; i < W; i++){
+    
+    for(int i = 0; i < W; i++){
         if(grid[H-1][i] == 2) {
             cout<<"YES";
             return 0;
         }
-   }
-   cout<<"NO";
-    
-    
-    
-    
+    }
+    cout<<"NO";
     return 0;
 }
