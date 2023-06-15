@@ -1,3 +1,10 @@
+// Nhập hai số nguyên N và K, in ra tất cả các từ độ dài K gồm các chữ cái khác nhau trong phạm vi N chữ cái tiếng Anh bắt đầu từ kí tự a. Lưu ý các từ cần được in tăng dần theo thứ tự từ điển.
+// For example:
+// Input	Result
+// 3 1    
+// a
+// b
+
 #include <bits/stdc++.h>
 using namespace std;
 map<int, bool> used;
